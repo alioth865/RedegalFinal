@@ -45,6 +45,10 @@ public class CategoriaEspecifica implements Serializable {
         this.productoEspecificos.add(productoEspecifico);
     }
 
+    public List<ProductoEspecifico> getProductoEspecificos() {
+        return productoEspecificos;
+    }
+
     @Override
     public String toString() {
         return "CategoriaEspecifica{" +

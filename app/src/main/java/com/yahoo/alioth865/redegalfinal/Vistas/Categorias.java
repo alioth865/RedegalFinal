@@ -1,5 +1,6 @@
 package com.yahoo.alioth865.redegalfinal.Vistas;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -32,7 +33,10 @@ public class Categorias extends ActionBarActivity {
         todasCategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "You clicked on position : " + position + " and id : " + ((CategoriaEspecifica)parent.getAdapter().getItem(position)).getDescripcion(), Toast.LENGTH_LONG).show();
+                Intent i=new Intent(Categorias.this, Productos.class);
+                i.putExtra("Productos", (java.io.Serializable) ((CategoriaEspecifica)parent.getAdapter().getItem(position)).getProductoEspecificos());
+                startActivity(i);
+                //Toast.makeText(getApplicationContext(), "You clicked on position : " + position + " and id : " + ((CategoriaEspecifica)parent.getAdapter().getItem(position)).getDescripcion(), Toast.LENGTH_LONG).show();
             }
         });
     }

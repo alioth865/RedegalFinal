@@ -4,7 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
+import com.yahoo.alioth865.redegalfinal.Adapter.AdapterListadoProducto;
 import com.yahoo.alioth865.redegalfinal.Modelo.ProductoEspecifico;
 import com.yahoo.alioth865.redegalfinal.R;
 
@@ -13,6 +15,7 @@ import java.util.List;
 
 public class Productos extends ActionBarActivity {
     List<ProductoEspecifico> list;
+    ListView lvProductos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,10 @@ public class Productos extends ActionBarActivity {
     }
 
     private void inicializarComponente() {
+        list=(List<ProductoEspecifico>)getIntent().getExtras().get("Productos");
+        lvProductos=(ListView)findViewById(R.id.listView2);
+        lvProductos.setAdapter(new AdapterListadoProducto(list,this));
+
     }
 
 
