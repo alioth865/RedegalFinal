@@ -44,6 +44,26 @@
             android:name=".Vistas.Productos"
             android:label="@string/title_activity_productos" >
         </activity>
+        <activity
+            android:name=".Vistas.VistaProductoEspecifico"
+            android:label="@string/title_activity_producto_especifico" >
+        </activity>
+        <activity
+            android:name=".Vistas.Clientes"
+            android:label="@string/title_activity_clientes" >
+        </activity>
+        <activity
+            android:name=".VistaClienteEspecifico"
+            android:label="@string/title_activity_vista_cliente_especifico" >
+        </activity>
+        <activity
+            android:name=".Vistas.Pedido"
+            android:label="@string/title_activity_pedido" >
+        </activity>
+        <activity
+            android:name=".Vistas.RealizarPedido"
+            android:label="@string/title_activity_realizar_pedido" >
+        </activity>
     </application>
 
 </manifest>

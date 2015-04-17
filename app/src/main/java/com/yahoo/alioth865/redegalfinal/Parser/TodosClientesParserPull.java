@@ -1,12 +1,8 @@
 package com.yahoo.alioth865.redegalfinal.Parser;
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
 import android.util.Xml;
-import android.widget.Toast;
 
-import com.yahoo.alioth865.redegalfinal.Modelo.EmpleadoEspecifico;
+import com.yahoo.alioth865.redegalfinal.Modelo.ClienteEspecifico;
 
 import org.apache.commons.codec.binary.Base64;
 import org.xmlpull.v1.XmlPullParser;
@@ -14,7 +10,6 @@ import org.xmlpull.v1.XmlPullParser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.LinkedList;
@@ -22,49 +17,47 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by AliothAntonio on 21/03/2015.
+ * Created by Alioth on 07/04/2015.
  */
-public class TodosEmployeesParserPull {
+public class TodosClientesParserPull {
     private URL url;
     private String xml;
     private Map<String, String> configuracion;
-    private Context context;
 
-    public TodosEmployeesParserPull(String url, Map<String, String> configuracion,Context context) {
+    public TodosClientesParserPull(String url, Map<String, String> configuracion) {
         try {
             this.url = new URL(url);
             this.configuracion=configuracion;
-            this.context =context;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
 
-    public List<EmpleadoEspecifico> parse(){
-        List<EmpleadoEspecifico> empleadoEspecificos=new LinkedList<>();
+    public List<ClienteEspecifico> parse(){
+        List<ClienteEspecifico> empleadoEspecificos=new LinkedList<>();
         XmlPullParser parser= Xml.newPullParser();
         try {
-                parser.setInput(this.getInputStream(), null);
-                int evento=parser.getEventType();
-                while(evento!=XmlPullParser.END_DOCUMENT){
-                    String etiqueta=null;
-                    switch (evento){
-                        case XmlPullParser.START_TAG:
-                            etiqueta=parser.getName();
-                            if(etiqueta.equals("employee")){
-                                String urlEmpleadoEspecifico=parser.getAttributeValue(null,"href");
-                                EmpleadoEspecificoParserPull parserEspecifico=new EmpleadoEspecificoParserPull(urlEmpleadoEspecifico,configuracion);
-                                empleadoEspecificos.add(parserEspecifico.parse());
-                            }
-                            break;
-                        case XmlPullParser.END_TAG:
-                    }
-                    evento=parser.next();
-
+            parser.setInput(this.getInputStream(), null);
+            int evento=parser.getEventType();
+            while(evento!=XmlPullParser.END_DOCUMENT){
+                String etiqueta=null;
+                switch (evento){
+                    case XmlPullParser.START_TAG:
+                        etiqueta=parser.getName();
+                        if(etiqueta.equals("customer")){
+                            String urlClienteEspecifico=parser.getAttributeValue(null,"href");
+                            ClienteEspecificoParserPull parserEspecifico=new ClienteEspecificoParserPull(urlClienteEspecifico,configuracion);
+                            empleadoEspecificos.add(parserEspecifico.parse());
+                        }
+                        break;
+                    case XmlPullParser.END_TAG:
                 }
-            }catch (Exception ex){
-                throw new RuntimeException(ex);
+                evento=parser.next();
+
             }
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
         return empleadoEspecificos;
     }
 

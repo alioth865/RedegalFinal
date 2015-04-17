@@ -82,7 +82,7 @@ public class Registro extends ActionBarActivity {
         @Override
         protected Void doInBackground(String... params) {
             String url=params[0];
-            TodosEmployeesParserPull parser=new TodosEmployeesParserPull(url,configuracion);
+            TodosEmployeesParserPull parser=new TodosEmployeesParserPull(url,configuracion,getApplicationContext());
             allEmpleoyee =parser.parse();
             String usuario=params[1];
             String contraseña=params[2];

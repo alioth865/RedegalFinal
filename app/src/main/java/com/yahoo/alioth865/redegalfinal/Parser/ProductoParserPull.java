@@ -53,7 +53,7 @@ public class ProductoParserPull {
                         }else if(etiqueta.equals("name")){
                             leerNombre=true;
                         }else if(etiqueta.equals("image")){
-                            //TODO HACER LO RELATIVO A LA IMAGEN
+                            productoEspecifico.addImagen(parser.getAttributeValue(null, "href"));
                         }else if(etiqueta.equals("description")){
                             leerDescripcion=true;
                         }else if(etiqueta.equals("price")){

@@ -14,6 +14,7 @@ import com.yahoo.alioth865.redegalfinal.Adapter.AdapterTodasCategorias;
 import com.yahoo.alioth865.redegalfinal.Modelo.CategoriaEspecifica;
 import com.yahoo.alioth865.redegalfinal.R;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -34,7 +35,7 @@ public class Categorias extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i=new Intent(Categorias.this, Productos.class);
-                i.putExtra("Productos", (java.io.Serializable) ((CategoriaEspecifica)parent.getAdapter().getItem(position)).getProductoEspecificos());
+                i.putExtra("Productos", (Serializable) ((CategoriaEspecifica)parent.getAdapter().getItem(position)).getProductoEspecificos());
                 startActivity(i);
                 //Toast.makeText(getApplicationContext(), "You clicked on position : " + position + " and id : " + ((CategoriaEspecifica)parent.getAdapter().getItem(position)).getDescripcion(), Toast.LENGTH_LONG).show();
             }
